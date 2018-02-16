@@ -44,12 +44,8 @@ object RomanNumeral {
   def countSubstring(str:String, sub:String):(Int, String) ={
     import scala.annotation.tailrec
     def countsStartsWith(currentTotal: Int, checkString: String): (Int, String) = {
-      if (checkString.startsWith(sub)) {
-        if (sub.length < checkString.length) {
-          countsStartsWith(currentTotal + 1, checkString.substring(sub.length))
-        } else
-          (currentTotal + 1, "")
-      }
+      if (checkString.startsWith(sub))
+        countsStartsWith(currentTotal + 1, checkString.substring(sub.length))
       else
         (currentTotal, checkString)
     }
