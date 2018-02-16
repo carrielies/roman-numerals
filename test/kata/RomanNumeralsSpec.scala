@@ -7,7 +7,7 @@ import play.api.test._
 
 class RomanNumeralSpec extends PlaySpec with OneAppPerTest {
 
-  "RomanNumberal" should {
+  "RomanNumberal.toRoman" should {
 
     "return I when passed 1" in {
       RomanNumeral.toRoman(1) mustBe ("I")
@@ -53,4 +53,50 @@ class RomanNumeralSpec extends PlaySpec with OneAppPerTest {
 
   }
 
+  "RomanNumberal.fromRoman" should {
+
+    "return 1 when passed I" in {
+      RomanNumeral.fromRoman("I") mustBe (1)
+    }
+
+    "return 2 when passed II" in {
+      RomanNumeral.fromRoman("II") mustBe (2)
+    }
+
+    "return 3 when passed III" in {
+      RomanNumeral.fromRoman("III") mustBe (3)
+    }
+
+    "return 4 when passed IV" in {
+      RomanNumeral.fromRoman("IV") mustBe (4)
+    }
+
+    "return 5 when passed V" in {
+      RomanNumeral.fromRoman("V") mustBe (5)
+    }
+
+    "return 10 when passed X" in {
+      RomanNumeral.fromRoman("X") mustBe (10)
+    }
+    "return 50 when passed L" in {
+      RomanNumeral.fromRoman("L") mustBe (50)
+    }
+
+    "return 1954 when passed MCMLIV" in {
+      RomanNumeral.fromRoman("MCMLIV") mustBe (1954)
+    }
+
+    "return 1990 when passed MCMXC" in {
+      RomanNumeral.fromRoman("MCMXC") mustBe (1990)
+    }
+
+    "return 1888 when passed MDCCCLXXXVIII" in {
+      RomanNumeral.fromRoman("MDCCCLXXXVIII") mustBe (1888)
+    }
+
+    "return 3888 when passed MMMDCCCLXXXVIII" in {
+      RomanNumeral.fromRoman("MMMDCCCLXXXVIII") mustBe (3888)
+    }
+
+  }
 }

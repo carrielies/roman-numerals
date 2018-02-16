@@ -30,4 +30,29 @@ object RomanNumeral {
         RomanOutput(remainingNumber, output)
     }.output
   }
+
+  def fromRoman(roman: String): Int = {
+    romanDigits.foldLeft(RomanOutput(0, roman)){
+      (result, current) =>
+        val (times, remainingOutput) = countSubstring(result.output, current.roman)
+        val currentNumber = result.remainder + (current.araibic * times)
+        RomanOutput(currentNumber, remainingOutput)
+    }.remainder
+
+  }
+
+  def countSubstring(str:String, sub:String):(Int, String) ={
+    import scala.annotation.tailrec
+    def countsStartsWith(currentTotal: Int, checkString: String): (Int, String) = {
+      if (checkString.startsWith(sub)) {
+        if (sub.length < checkString.length) {
+          countsStartsWith(currentTotal + 1, checkString.substring(sub.length))
+        } else
+          (currentTotal + 1, "")
+      }
+      else
+        (currentTotal, checkString)
+    }
+    countsStartsWith(0, str)
+  }
 }
